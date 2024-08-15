@@ -2,6 +2,7 @@
 
 import dotnev from "dotenv"
 import connectDB from "./db/index.js";
+import { app } from "./app.js";
 
 dotnev.config({
     path: './env'
@@ -11,7 +12,7 @@ dotnev.config({
 connectDB()
 .then(() => {
     app.listen(process.env.PORT) || 8000,() => {
-        console.log(`0 Sever is running at port : ${ process.env.PORT}`);
+        console.log(`⚙️ Sever is running at port : ${ process.env.PORT}`);
     }
 })
 .catch((err) => {
