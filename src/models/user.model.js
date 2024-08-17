@@ -22,6 +22,7 @@ const userSchema = new Schema(
         fullName: {
             type: String,
             required: true,
+            trim: true,
             index: true,
         },
         avatar:{
@@ -31,10 +32,12 @@ const userSchema = new Schema(
         coverImage: {
             type: String, // cloudinary url
         },
-        watchHistory: {
-            type: Schema.Types.ObjectId,
-            ref: "Video"
-        },
+        watchHistory: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Video"
+            }
+        ],
         password: {
             type: String,
             required: [true, "Password is required"]
@@ -49,9 +52,7 @@ const userSchema = new Schema(
 )
 
 userSchema.pre("save", async function(next) {
-    if(
-    this.isModified("password"))return next();
-        
+    if(!this.isModified("password"))return next();  
     this.password = await bcrypt.hash(this.password, 10)
     next()
 })
@@ -66,7 +67,7 @@ userSchema.methods.generateAccessToken = function(){
             _id: this._id,
             email: this.email,
             usename: this.usename,
-            fullname: this.fullName
+            fullName: this.fullName
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
@@ -74,7 +75,6 @@ userSchema.methods.generateAccessToken = function(){
         }
     )
 }
-
 
 
 

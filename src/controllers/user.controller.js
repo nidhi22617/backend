@@ -1,13 +1,6 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
-import {ApiError} from "../utils/ApiError.js"
-import { User} from "../models/user.model.js"
-import {uploadOnCloudinary} from "../utils/cloudinary.js"
-import { ApiResponse } from "../utils/ApiResponse.js";
-import jwt from "jsonwebtoken"
-import mongoose from "mongoose";
 
 
-// const registerUser = asyncHandler(async(req, res) => {
 // get user details from frontend
 // validation - not empty
 // check if user already exists: username, email
@@ -19,14 +12,12 @@ import mongoose from "mongoose";
 // return response
 
 
-const registerUser = asyncHandler(async(req, res) => {
+const registerUser = asyncHandler( async (req, res) => {
     res.status(200).json({
-        message:"Ok"
+        message: "Ok"
     })
-})
+} )
 
-
-// } )
 
 
 export {registerUser}
