@@ -311,7 +311,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Avatar Image updated successfully"));
 });
 
-const updateCoverAvatar = asyncHandler(async (req, res) => {
+const updateUserCoverImage = asyncHandler(async (req, res) => {
   const coverImageLacalPath = req.file?.path;
 
   if (!coverImageLacalPath) {
@@ -470,7 +470,7 @@ export {
   getCurrentUser,
   updateAccountDetails,
   updateUserAvatar,
-  updateCoverAvatar,
+  updateUserCoverImage,
   getUserChannelProfile,
   getWatchHistory
 };
